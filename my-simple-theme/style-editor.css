@@ -1,0 +1,11 @@
+/*
+* My Simple Theme Editor Styles
+*
+* Add styles here to make the WordPress editor content look like the frontend.
+*/
+
+body {
+    font-family: sans-serif; /* Example: Set a default font */
+    line-height: 1.6;
+    padding: 20px; /* Add some padding to the editor area */
+}
