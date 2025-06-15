@@ -46,14 +46,14 @@ if ( ! function_exists( 'my_simple_theme_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
-        // set_post_thumbnail_size( 1568, 9999 ); // Example size
+        set_post_thumbnail_size( 1568, 9999 ); // Example size
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
 				'primary' => esc_html__( 'Primary Menu', 'my-simple-theme' ),
                 // You can add more menu locations here if needed
-                // 'footer'  => esc_html__( 'Footer Menu', 'my-simple-theme' ),
+                'footer'  => esc_html__( 'Footer Menu', 'my-simple-theme' ),
 			)
 		);
 
@@ -99,7 +99,7 @@ if ( ! function_exists( 'my_simple_theme_setup' ) ) :
 		);
 
         // Editor styles
-        // add_editor_style( 'style-editor.css' ); // If you have specific editor styles
+        add_editor_style( 'style-editor.css' ); // If you have specific editor styles
 
         // Gutenberg support
         add_theme_support( 'responsive-embeds' );
@@ -117,13 +117,13 @@ add_action( 'after_setup_theme', 'my_simple_theme_setup' );
  *
  * @global int $content_width
  */
-// function my_simple_theme_content_width() {
-//  // This variable is intended to be overruled from themes.
-//  // Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
-//  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-//  $GLOBALS['content_width'] = apply_filters( 'my_simple_theme_content_width', 640 ); // Example width
-// }
-// add_action( 'after_setup_theme', 'my_simple_theme_content_width', 0 );
+function my_simple_theme_content_width() {
+ // This variable is intended to be overruled from themes.
+ // Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
+ // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+ $GLOBALS['content_width'] = apply_filters( 'my_simple_theme_content_width', 640 ); // Example width
+}
+add_action( 'after_setup_theme', 'my_simple_theme_content_width', 0 );
 
 
 /**
@@ -134,7 +134,7 @@ function my_simple_theme_scripts() {
 	// wp_style_add_data( 'my-simple-theme-style', 'rtl', 'replace' ); // For RTL support
 
 	// Example of enqueuing a JS file
-	// wp_enqueue_script( 'my-simple-theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), MY_SIMPLE_THEME_VERSION, true );
+	wp_enqueue_script( 'my-simple-theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), MY_SIMPLE_THEME_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
